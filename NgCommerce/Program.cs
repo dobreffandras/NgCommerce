@@ -1,8 +1,11 @@
+using NgCommerce;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.ConfigureServices();
 
 var app = builder.Build();
 

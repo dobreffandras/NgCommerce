@@ -55,4 +55,12 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+  
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\DOBREA\OneDrive - NTT Data EMEA\Dokumente\Projects\Learning\Angular\AngularEcommerce\NgCommerce\NgCommerce\.editorconfig" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="C:\Users\DOBREA\OneDrive - NTT Data EMEA\Dokumente\Projects\Learning\Angular\AngularEcommerce\NgCommerce\NgCommerce\.editorconfig" />
+  </ItemGroup>
 </Project>

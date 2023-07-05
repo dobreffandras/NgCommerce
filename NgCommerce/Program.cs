@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using NgCommerce;
+using NgCommerce.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.ConfigureServices();
+builder.Services.AddDbContext<DataContext>(options =>
+{ 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); 
+});
 
 var app = builder.Build();
 

@@ -16,8 +16,8 @@ export class FetchDataComponent {
   });
 
   constructor(
-    http: HttpClient,
-    @Inject('BASE_URL') baseUrl: string,
+    private http: HttpClient,
+    @Inject('BASE_URL') private baseUrl: string,
     private formBuilder: FormBuilder) {
 
     http.get<Product[]>(baseUrl + 'api/products')
@@ -28,6 +28,12 @@ export class FetchDataComponent {
 
   public OnSubmit(): void {
     console.log(this.newProductForm.value)
+    this.http.post<Product>(
+      this.baseUrl + 'api/products',
+      this.newProductForm.value)
+      .subscribe(
+        result => { this.products.push(result); },
+        error => console.error(error));
   }
 }
 

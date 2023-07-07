@@ -26,9 +26,10 @@ export class FetchDataComponent {
       .pipe(
         finalize(() => this.newProductFormAvailable = true)
       )
-      .subscribe(
-        result => { this.products = result; },
-        error => console.error(error));
+      .subscribe({
+        next: p => { this.products = p; },
+        error: e => console.error(e)
+      });
   }
 
   public OnSubmit(): void {
@@ -43,11 +44,10 @@ export class FetchDataComponent {
       .pipe(
         finalize(() => this.newProductFormAvailable = true)
       )
-      .subscribe(
-        result => { this.products.push(result); },
-        error => {
-          this.responseErrorMessage = error?.error ?? "Oops, something happened." ;
-        });
+      .subscribe({
+        next: p => this.products.push(p),
+        error: e => { this.responseErrorMessage = e?.error ?? "Oops, something happened."; }
+      });
   }
 }
 

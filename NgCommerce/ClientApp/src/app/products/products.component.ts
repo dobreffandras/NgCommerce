@@ -4,10 +4,10 @@ import { FormBuilder } from '@angular/forms';
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  selector: 'products',
+  templateUrl: './products.component.html'
 })
-export class FetchDataComponent {
+export class ProductsComponent {
   public products: Product[] = [];
   public newProductFormAvailable: boolean = false;
   public responseErrorMessage = '';

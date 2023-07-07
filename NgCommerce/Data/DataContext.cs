@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
 namespace NgCommerce.Data;
 
 public class DataContext : DbContext
 {
-    public DataContext(DbContextOptions options)
-        : base(options)
-    {
-    }
 
-    public DbSet<ProductEntity> Products { get; set; }
+    public DataContext() : base() { }
+
+    public DataContext(DbContextOptions options) : base(options) { }
+
+    public virtual DbSet<ProductEntity> Products { get; set; }
 }

@@ -22,7 +22,7 @@ public class ProductsService : IProductsService
         var existing = await dataContext.Products.FirstOrDefaultAsync(p => p.Name == newProduct.Name);
         if(existing is not null)
         {
-            return Result.Error<Product>("Product already Exists");
+            return Result.Error<Product>($"Product with name '{newProduct.Name}' already exists");
         }
 
         var newEntity = mapper.Map<ProductEntity>(newProduct);

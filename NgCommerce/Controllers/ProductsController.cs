@@ -30,9 +30,12 @@ namespace NgCommerce.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Product value)
+        public async Task<ActionResult<Product>> Post([FromBody] NewProduct product)
         {
-            throw new NotImplementedException();
+            var res = await productsService.CreateProduct(product);
+            return res.Match<ActionResult<Product>>(
+                onSuccess: product => Ok(product),
+                onError: message => BadRequest(message));
         }
 
         [HttpPut("{id}")]

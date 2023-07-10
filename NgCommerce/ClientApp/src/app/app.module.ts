@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { ProductsComponent } from './admin/products/products.component';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { ProductsComponent } from './admin/products/products.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     ProductsComponent
   ],
   imports: [
@@ -25,7 +23,6 @@ import { ProductsComponent } from './admin/products/products.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
       { path: 'products', component: ProductsComponent },
     ])
   ],

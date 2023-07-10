@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from './admin/products/products.component';
 
 @NgModule({
   declarations: [

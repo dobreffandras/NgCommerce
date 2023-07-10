@@ -45,8 +45,12 @@ export class ProductsComponent {
         finalize(() => this.newProductFormAvailable = true)
       )
       .subscribe({
-        next: p => this.products.push(p),
-        error: e => { this.responseErrorMessage = e?.error ?? "Oops, something happened."; }
+        next: p => {
+          this.products.push(p);
+        },
+        error: e => { 
+          this.responseErrorMessage = e?.error ?? "Oops, something happened.";
+        }
       });
   }
 }

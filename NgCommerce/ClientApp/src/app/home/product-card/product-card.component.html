@@ -1,9 +1,10 @@
 <div class="product-card" *ngIf="product">
-    <p class="title">{{product.name}}</p>
-    <p>{{product.price}}</p>
-    <p>{{product.coverImageUrl}}</p>
-    <p>{{product.description}}</p>
-    <p>{{product.category}}</p>
+    <div class="cover-image"></div>
+    <div class="detail">
+
+        <div class="title">{{product.name}}</div>
+        <div class="price">{{product.price}}</div>
+    </div>
 </div>
 
 <div *ngIf="!product">..Missing product info..</div>

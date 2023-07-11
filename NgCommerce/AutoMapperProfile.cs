@@ -8,7 +8,7 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<NewProduct, ProductEntity>();
+        CreateMap<NewProduct, ProductEntity>().ForMember(x => x.Id, o => o.Ignore());
         CreateMap<ProductEntity, Product>().ReverseMap();
     }
 }

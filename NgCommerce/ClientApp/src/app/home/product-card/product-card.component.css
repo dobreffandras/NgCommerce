@@ -1,0 +1,21 @@
+.product-card {
+    margin: 10px;
+    width: 300px;
+    min-height: 200px;
+    border-radius: 25px;
+    border: 1px solid lightblue;
+    box-shadow: 0px 0px 8px 0px lightslategray;
+    transition: 0.5s;
+}
+
+.product-card:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 9px 1px lightslategray;
+    background-color: aliceblue;
+}
+
+.product-card .title {
+    margin: 10px;
+    text-align: center;
+    font-weight: 600;
+}

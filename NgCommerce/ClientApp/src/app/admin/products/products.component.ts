@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { finalize } from 'rxjs';
+import { Product } from '../../core/Product';
 
 @Component({
   selector: 'products',
@@ -55,9 +56,3 @@ export class ProductsComponent {
   }
 }
 
-interface Product {
-  id: number,
-  name: string,
-  description: string;
-  category: string;
-}

@@ -1,0 +1,7 @@
+<div class="product-card" *ngIf="product">
+    <p class="title">{{product.name}}</p>
+    <p>{{product.description}}</p>
+    <p>{{product.category}}</p>
+</div>
+
+<div *ngIf="!product">..Missing product info..</div>

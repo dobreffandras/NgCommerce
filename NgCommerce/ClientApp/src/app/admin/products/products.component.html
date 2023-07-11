@@ -9,6 +9,8 @@
     <tr>
       <th>Id</th>
       <th>Name</th>
+      <th>Price</th>
+      <th>Image Url</th>
       <th>Description</th>
       <th>Category</th>
     </tr>
@@ -17,6 +19,8 @@
     <tr *ngFor="let p of products">
       <td>{{ p.id }}</td>
       <td>{{ p.name }}</td>
+      <td>{{ p.price }}</td>
+      <td>{{ p.coverImageUrl }}</td>
       <td>{{ p.description }}</td>
       <td>{{ p.category }}</td>
     </tr>
@@ -30,15 +34,23 @@
   </div>
   <form (ngSubmit)="OnSubmit()" [formGroup]="newProductForm">
     <fieldset [disabled]="!newProductFormAvailable">
-      <div>
+      <div class="mb-3">
         <label for="name" class="form-label">Name: </label>
         <input type="text" name="name" id="name" formControlName="name" class="form-control" />
       </div>
-      <div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price: </label>
+        <input type="number" name="price" id="price" formControlName="price" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="coverImageUrl" class="form-label">Cover Image Url: </label>
+        <input type="text" name="coverImageUrl" id="coverImageUrl" formControlName="coverImageUrl" class="form-control" />
+      </div>
+      <div class="mb-3">
         <label for="descripion" class="form-label">Description: </label>
         <input type="text" name="description" id="descripion" formControlName="description" class="form-control" />
       </div>
-      <div>
+      <div class="mb-3">
         <label for="category" class="form-label">Category: </label>
         <input type="text" name="category" id="category" formControlName="category" class="form-control" />
       </div>

@@ -14,6 +14,8 @@ export class ProductsComponent {
   public responseErrorMessage = '';
   newProductForm = this.formBuilder.group({
     name: '',
+    price: 0,
+    coverImageUrl: '',
     description: '',
     category: '',
   });

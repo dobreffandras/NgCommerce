@@ -41,9 +41,9 @@ public class ProductServiceTests
             .Setup(x => x.Products)
             .ReturnsDbSet(new[]
             {
-                new ProductEntity() { Id = 1, Name = "Product1"},
-                new ProductEntity() { Id = 2, Name = "Product2"},
-                new ProductEntity() { Id = 3, Name = "Product3"},
+                new ProductEntity() { Id = 1, Name = "Product1", Price = 1 },
+                new ProductEntity() { Id = 2, Name = "Product2", Price = 1 },
+                new ProductEntity() { Id = 3, Name = "Product3", Price = 1 },
             });
 
         // Act
@@ -54,9 +54,9 @@ public class ProductServiceTests
             .Should()
             .BeEquivalentTo(new[]
             {
-                new Product(1, "Product1"),
-                new Product(2, "Product2"),
-                new Product(3, "Product3")
+                new Product(1, "Product1", 1),
+                new Product(2, "Product2", 1),
+                new Product(3, "Product3", 1)
             });
     }
     
@@ -68,13 +68,13 @@ public class ProductServiceTests
             .Setup(x => x.Products)
             .ReturnsDbSet(new[]
             {
-                new ProductEntity() { Id = 1, Name = "Product1"},
-                new ProductEntity() { Id = 2, Name = "Product2"},
-                new ProductEntity() { Id = 3, Name = "Product3"},
+                new ProductEntity() { Id = 1, Name = "Product1", Price = 1 },
+                new ProductEntity() { Id = 2, Name = "Product2", Price = 1 },
+                new ProductEntity() { Id = 3, Name = "Product3", Price = 1 },
             });
 
         // Act
-        await sut.CreateProduct(new NewProduct("Product4"));
+        await sut.CreateProduct(new NewProduct("Product4", 1));
 
         // Assert
         mockDataContext.Verify(
@@ -95,9 +95,9 @@ public class ProductServiceTests
             .Setup(x => x.Products)
             .ReturnsDbSet(new[]
             {
-                new ProductEntity() { Id = 1, Name = "Product1"},
-                new ProductEntity() { Id = 2, Name = "Product2"},
-                new ProductEntity() { Id = 3, Name = "Product3"},
+                new ProductEntity() { Id = 1, Name = "Product1", Price = 1 },
+                new ProductEntity() { Id = 2, Name = "Product2", Price = 1 },
+                new ProductEntity() { Id = 3, Name = "Product3", Price = 1 },
             });
         const int newId = 4;
         mockDataContext
@@ -105,12 +105,12 @@ public class ProductServiceTests
             .Callback<ProductEntity, CancellationToken>((e, _) => e.Id = newId);
 
         // Act
-        var result = await sut.CreateProduct(new NewProduct("Product4"));
+        var result = await sut.CreateProduct(new NewProduct("Product4", 1));
 
         // Assert
         result
             .Should()
-            .BeEquivalentTo(Result.Ok(new Product(newId, "Product4")));
+            .BeEquivalentTo(Result.Ok(new Product(newId, "Product4", 1)));
     }
     
     [Fact]
@@ -121,13 +121,13 @@ public class ProductServiceTests
             .Setup(x => x.Products)
             .ReturnsDbSet(new[]
             {
-                new ProductEntity() { Id = 1, Name = "Product1"},
-                new ProductEntity() { Id = 2, Name = "Product2"},
-                new ProductEntity() { Id = 3, Name = "Product3"},
+                new ProductEntity() { Id = 1, Name = "Product1", Price = 1 },
+                new ProductEntity() { Id = 2, Name = "Product2", Price = 1 },
+                new ProductEntity() { Id = 3, Name = "Product3", Price = 1 },
             });
 
         // Act
-        var result = await sut.CreateProduct(new NewProduct("Product1"));
+        var result = await sut.CreateProduct(new NewProduct("Product1", 1));
 
         // Assert
         result.Should().BeEquivalentTo(Result.Error<Product>("Product with name 'Product1' already exists"));

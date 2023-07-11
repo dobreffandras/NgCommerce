@@ -37,25 +37,26 @@ describe("ProductsComponent", () => {
     let req = httpTestingController.expectOne("/api/products");
     
     // When
-    req.flush([{ id: 1, name: "Product1" }, { id: 2, name: "Product2" }]);
+    req.flush([{ id: 1, name: "Product1", price: 3 }, { id: 2, name: "Product2", price: 5 }]);
     fixture.detectChanges();
     
     // Then
     let table = (<HTMLElement>fixture.nativeElement).querySelector("table")!;
     let row1Values = tableRowToValueList(table.rows[1]);
     let row2Values = tableRowToValueList(table.rows[2]);
-    expect(row1Values).toEqual(['1', 'Product1', '', '']);
-    expect(row2Values).toEqual(['2', 'Product2', '', '']);
+    expect(row1Values).toEqual(['1', 'Product1', '3', '', '', '']);
+    expect(row2Values).toEqual(['2', 'Product2', '5', '', '', '']);
   });
 
   it("should call backend endpoint for product creation", () => {
     // Given
     let component = TestBed.createComponent(ProductsComponent).componentInstance;
     httpTestingController.match({method: 'GET', url: '/api/products'})
-    const newProduct = {id: 3, name: "Product3"};
+    const newProduct = {id: 3, name: "Product3", price: 10};
 
     // When
     component.newProductForm.controls['name'].setValue(newProduct.name);
+    component.newProductForm.controls['price'].setValue(newProduct.price);
     component.OnSubmit();
     let req = httpTestingController.expectOne({method: "POST", url: "/api/products"});
     req.flush(newProduct);
@@ -68,7 +69,9 @@ describe("ProductsComponent", () => {
       body: {
         name: newProduct.name, 
         description: '', 
-        category: ''
+        category: '',
+        price: newProduct.price,
+        coverImageUrl: '',
       }}));
   });
 
@@ -78,8 +81,8 @@ describe("ProductsComponent", () => {
     let component = fixture.componentInstance;
     httpTestingController
       .expectOne({method: 'GET', url: '/api/products'})
-      .flush([{ id: 1, name: "Product1" }, { id: 2, name: "Product2" }]);
-    const newProduct = { id: 3, name: "Product3" };
+      .flush([{ id: 1, name: "Product1", price: 0 }, { id: 2, name: "Product2", price: 0 }]);
+    const newProduct = { id: 3, name: "Product3", price: 15 };
 
     // When
     component.newProductForm.controls['name'].setValue(newProduct.name);
@@ -92,7 +95,7 @@ describe("ProductsComponent", () => {
     let table = (<HTMLElement>fixture.nativeElement).querySelector("table")!;
     expect(table.rows.length).toEqual(4);
     let lastRowValues = tableRowToValueList(table.rows[3]);
-    expect(lastRowValues).toEqual([newProduct.id.toString(), newProduct.name, '', '']);
+    expect(lastRowValues).toEqual([newProduct.id.toString(), newProduct.name, '15', '', '', '']);
   });
 
   it("should show error message when request fails", () => {

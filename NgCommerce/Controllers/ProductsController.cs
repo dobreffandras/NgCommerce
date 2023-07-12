@@ -20,13 +20,16 @@ namespace NgCommerce.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> Get()
         {
-            return Ok(await productsService.GetProducts());
+            return Ok(await productsService.GetProducts()); // TODO Add pagination
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Product>> Get(int id)
         {
-            throw new NotImplementedException();
+            var res = await productsService.GetProduct(id);
+            return res.Match<ActionResult<Product>>(
+                onSuccess: product => Ok(product),
+                onError: message => BadRequest(message));
         }
 
         [HttpPost]

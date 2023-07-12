@@ -32,6 +32,14 @@ public class ProductsService : IProductsService
         return Result.Ok(mapper.Map<Product>(newEntity));
     }
 
+    public async Task<Result<Product>> GetProduct(int id)
+    {
+        var product = await dataContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+        return product is not null 
+            ? Result.Ok(mapper.Map<Product>(product)) 
+            : Result.Error<Product>("Product not Found");
+    }
+
     public async Task<IEnumerable<Product>> GetProducts()
     {
         var entities = await dataContext.Products.ToListAsync();

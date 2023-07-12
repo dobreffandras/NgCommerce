@@ -10,6 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './admin/products/products.component';
 import { ProductCardComponent } from './home/product-card/product-card.component';
 import { ProductImageDirective } from './shared/directives/product-image.directive';
+import { registerLocaleData } from '@angular/common';
+import  localeDe from '@angular/common/locales/de'; 
+
+registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [

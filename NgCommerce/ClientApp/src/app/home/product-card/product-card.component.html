@@ -5,7 +5,7 @@
     <div class="detail">
 
         <div class="title">{{product.name}}</div>
-        <div class="price">{{product.price}}</div>
+        <div class="price">{{product.price | currency: 'EUR':undefined:undefined:'de-DE'}}</div>
     </div>
 </div>
 

@@ -1,7 +1,9 @@
-<h1>NgCommerce</h1>
-<p>Welcome to the NgCommerce .NET-Angular eCommerce website.</p>
-<h3>Products</h3>
+<div class="container mt-5">
+    <h1>NgCommerce</h1>
+    <p>Welcome to the NgCommerce .NET-Angular eCommerce website.</p>
+    <h3>Products</h3>
 
-<div *ngIf="products.length" class="d-flex flex-wrap">  
-    <product-card *ngFor="let p of products" [product]="p"></product-card>
+    <div *ngIf="products.length" class="d-flex flex-wrap">  
+        <product-card *ngFor="let p of products" [product]="p"></product-card>
+    </div>
 </div>

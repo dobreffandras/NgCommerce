@@ -1,2 +1,22 @@
-<p *ngIf="product">{{product.name}}</p>
-<p *ngIf="!product">Product not found</p>
+<div *ngIf="product" id="product-page">
+    <div class="product-main container">
+        <div class="row">
+            <div class="product-main-content col-8">
+                <section class="product-header">
+                    <h1 class="product-title">{{product.name}}</h1>
+                </section>
+                <section class="product-details">
+                    <p>{{product.description}}</p>
+                </section>
+            </div>
+            <div class="product-main-side col-4">
+                <section>
+                    <div class="product-image" [productImage]="product.coverImageUrl" ></div>
+                    <div class="product-price">{{product.price | currency:'EUR':undefined:undefined:'de-DE'}}</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!product">Product not found</div>

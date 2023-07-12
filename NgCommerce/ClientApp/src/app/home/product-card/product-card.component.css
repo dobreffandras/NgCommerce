@@ -12,11 +12,33 @@
     transition: opacity .5s ease-in-out;
 }
 
+.product-card .cover-image.empty-cover-image{
+    background-color: aliceblue;
+    border: 1px solid lightblue;
+}
+
+.product-card .cover-image.empty-cover-image:after{
+    content: '';
+    background-color: white;
+    background-position: 12px 12px;
+    background-repeat: no-repeat;
+    background-image: url('../../../assets/product_image_placeholder_icon.png');
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 44px;  /*height of icon */
+    width: 44px;  /*width of icon */
+}
+
 .product-card:hover {
     cursor: pointer;
 }
 
 .product-card .detail {
+    color: #003765;
     padding: 27px 15px;
     border: 1px solid lightblue;
     border-top: 0;

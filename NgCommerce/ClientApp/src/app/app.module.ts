@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './admin/products/products.component';
 import { ProductCardComponent } from './home/product-card/product-card.component';
+import { ProductImageDirective } from './shared/directives/product-image.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductCardComponent } from './home/product-card/product-card.component
     NavMenuComponent,
     HomeComponent,
     ProductsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductImageDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

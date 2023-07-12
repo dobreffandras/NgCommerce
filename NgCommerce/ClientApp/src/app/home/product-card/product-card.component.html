@@ -1,5 +1,7 @@
 <div class="product-card" *ngIf="product">
-    <div class="cover-image"></div>
+    <div 
+        class="cover-image" 
+        [productImage]="product.coverImageUrl"></div>
     <div class="detail">
 
         <div class="title">{{product.name}}</div>

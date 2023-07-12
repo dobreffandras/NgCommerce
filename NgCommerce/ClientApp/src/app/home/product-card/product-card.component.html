@@ -1,12 +1,14 @@
 <div class="product-card" *ngIf="product">
-    <div 
-        class="cover-image" 
-        [productImage]="product.coverImageUrl"></div>
-    <div class="detail">
-
-        <div class="title">{{product.name}}</div>
-        <div class="price">{{product.price | currency: 'EUR':undefined:undefined:'de-DE'}}</div>
-    </div>
+    <a [routerLink]="'/products/' + product.id">
+        <div
+            class="cover-image"
+            [productImage]="product.coverImageUrl">
+        </div>
+        <div class="detail">
+            <div class="title">{{product.name}}</div>
+            <div class="price">{{product.price | currency: 'EUR':undefined:undefined:'de-DE'}}</div>
+        </div>    
+    </a>
 </div>
 
 <div *ngIf="!product">..Missing product info..</div>

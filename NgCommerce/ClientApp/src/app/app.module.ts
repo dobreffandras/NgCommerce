@@ -11,7 +11,8 @@ import { ProductsComponent } from './admin/products/products.component';
 import { ProductCardComponent } from './home/product-card/product-card.component';
 import { ProductImageDirective } from './shared/directives/product-image.directive';
 import { registerLocaleData } from '@angular/common';
-import  localeDe from '@angular/common/locales/de'; 
+import  localeDe from '@angular/common/locales/de';
+import { ProductComponent } from './pages/product/product.component'; 
 
 registerLocaleData(localeDe);
 
@@ -22,7 +23,8 @@ registerLocaleData(localeDe);
     HomeComponent,
     ProductsComponent,
     ProductCardComponent,
-    ProductImageDirective
+    ProductImageDirective,
+    ProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,7 @@ registerLocaleData(localeDe);
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'products/:id', component: ProductComponent },
       { path: 'products', component: ProductsComponent },
     ])
   ],

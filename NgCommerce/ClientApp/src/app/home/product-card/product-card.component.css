@@ -3,6 +3,11 @@
     min-width: 300px;
 }
 
+.product-card a{
+    text-decoration: none;
+}
+
+
 .product-card .cover-image {
     width: 100%;
     height: 180px;

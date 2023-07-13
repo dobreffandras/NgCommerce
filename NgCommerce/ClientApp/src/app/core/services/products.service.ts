@@ -26,4 +26,10 @@ export class ProductsService {
       this.baseUrl + 'api/products',
       newProduct));
   }
+
+  updateProduct(product: Product) : Promise<Product> {
+    return firstValueFrom(this.http.put<Product>(
+      this.baseUrl + 'api/products',
+      product));
+  }
 }

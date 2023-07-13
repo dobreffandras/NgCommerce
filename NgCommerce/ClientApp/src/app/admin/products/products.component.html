@@ -26,7 +26,7 @@
         <td><img *ngIf="p.coverImageUrl" [src]="p.coverImageUrl" /></td>
         <td>{{ p.description | slice:0:50 }}</td>
         <td>{{ p.category }}</td>
-        <td><button><fa-icon [icon]="faPencil"></fa-icon></button></td>
+        <td><button><fa-icon [icon]="faPencil" (click)="OnProductEdit(p.id)"></fa-icon></button></td>
         <td><button><fa-icon [icon]="faTrash"></fa-icon></button></td>
       </tr>
     </tbody>
@@ -60,7 +60,8 @@
           <input type="text" name="category" id="category" formControlName="category" class="form-control" />
         </div>
         <div>
-          <input type="Submit" name="name" id="name" class="btn btn-primary mt-3" />
+          <button type="submit" class="btn btn-primary mt-3 mb-3">{{submitButtonText}}</button>
+          <button type="button" class="btn btn-danger mt-3 mb-3 mx-1" (click)="OnCancel()">Cancel</button>
         </div>
         <div *ngIf="responseErrorMessage" class="mt-2 alert alert-danger">
           {{ responseErrorMessage }}

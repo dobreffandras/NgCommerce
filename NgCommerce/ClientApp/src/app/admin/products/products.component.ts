@@ -12,10 +12,15 @@ import { NewProduct } from 'src/app/core/NewProduct';
 })
 export class ProductsComponent implements OnInit {
   public products: Product[] = [];
+  public editedProductId: number | undefined;
   public newProductFormAvailable: boolean = false;
   public responseErrorMessage = '';
   public faPencil = faPencil;
   public faTrash = faTrash;
+
+  get submitButtonText(): string {
+    return this.editedProductId ? "Update" : "Create";
+  }
 
   newProductForm = this.formBuilder.group<NewProduct>({
     name: '',
@@ -48,16 +53,52 @@ export class ProductsComponent implements OnInit {
     this.newProductFormAvailable = false;
     this.responseErrorMessage = '';
 
-    this.productsService.createProduct(<NewProduct>this.newProductForm.value)
-      .then(p => {
-        this.products.push(p);
-      })
-      .catch(e => {
-        this.responseErrorMessage = e?.error ?? "Oops, something happened.";
-      })
-      .finally(() => {
-        return this.newProductFormAvailable = true;
-      });
+    if (this.editedProductId) {
+      let updatedProduct = <Product>{ id: this.editedProductId, ...this.newProductForm.value };
+
+      this.productsService.updateProduct(updatedProduct)
+        .then(p => {
+          let index = this.products.findIndex(p => p.id == this.editedProductId);
+          this.products[index] = updatedProduct;
+          this.editedProductId = undefined;
+          this.newProductForm.reset();
+        })
+        .catch(e => {
+          this.responseErrorMessage = e?.error ?? "Oops, something happened.";
+        })
+        .finally(() => {
+          return this.newProductFormAvailable = true;
+        });
+    } else {
+      this.productsService.createProduct(<NewProduct>this.newProductForm.value)
+        .then(p => {
+          this.products.push(p);
+          this.newProductForm.reset();
+        })
+        .catch(e => {
+          this.responseErrorMessage = e?.error ?? "Oops, something happened.";
+        })
+        .finally(() => {
+          return this.newProductFormAvailable = true;
+        });
+    }
+  }
+
+  public OnProductEdit(id: number) {
+    let product = this.products.find(p => p.id === id)!;
+    this.editedProductId = product.id;
+    this.newProductForm.setValue({
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      coverImageUrl: product.coverImageUrl,
+      category: product.category
+    });
+  }
+
+  public OnCancel() {
+    this.editedProductId = undefined;
+    this.newProductForm.reset();
   }
 }
 

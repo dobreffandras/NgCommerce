@@ -38,5 +38,19 @@ public record Result(bool Success, string ErrorMessage)
 
     public static Result Ok() => new (true, default);
 
-    public static Result Fail(string errorMessage) => new (false, errorMessage);
+    public static Result Error(string errorMessage) => new (false, errorMessage);
+
+    public void Match(Action onSuccess, Action<string> onError)
+    {
+        if (Success)
+        {
+            onSuccess();
+        }else
+        {
+            onError(ErrorMessage);
+        }
+    }
+
+    public TResult Match<TResult>(Func<TResult> onSuccess, Func<string, TResult> onError)
+        => Success ? onSuccess() : onError(ErrorMessage);
 }

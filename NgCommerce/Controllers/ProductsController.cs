@@ -41,10 +41,13 @@ namespace NgCommerce.Controllers
                 onError: message => BadRequest(message));
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Product value)
+        [HttpPut]
+        public async Task<ActionResult> Put([FromBody] Product product)
         {
-            throw new NotImplementedException();
+            var res = await productsService.UpdateProduct(product);
+            return res.Match<ActionResult>(
+                onSuccess: NoContent,
+                onError: BadRequest);
         }
 
         [HttpDelete("{id}")]

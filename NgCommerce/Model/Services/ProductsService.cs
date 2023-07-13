@@ -45,4 +45,23 @@ public class ProductsService : IProductsService
         var entities = await dataContext.Products.ToListAsync();
         return entities.Select(mapper.Map<Product>);
     }
+
+    public async Task<Result> UpdateProduct(Product product)
+    {
+        var existing = await dataContext.Products.FirstOrDefaultAsync(p => p.Id == product.Id);
+        if(existing is null)
+        {
+            return Result.Error($"No product with Id {product.Id}");
+        }
+
+        existing.Name = product.Name;
+        existing.Price = product.Price;
+        existing.CoverImageUrl = product.CoverImageUrl;
+        existing.Description = product.Description;
+        existing.Category = product.Category;
+
+        await dataContext.SaveChangesAsync();
+
+        return Result.Ok();
+    }
 }

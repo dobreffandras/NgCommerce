@@ -34,7 +34,7 @@ registerLocaleData(localeDe);
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'products/:id', component: ProductComponent },
-      { path: 'products', component: ProductsComponent },
+      { path: 'admin/products', component: ProductsComponent },
     ])
   ],
   providers: [],

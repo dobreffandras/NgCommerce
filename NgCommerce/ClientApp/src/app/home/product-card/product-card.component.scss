@@ -1,0 +1,74 @@
+@import '../../../colors.scss';
+
+.product-card {
+    margin: 10px;
+    min-width: 300px;
+
+    a {
+        text-decoration: none;
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        .detail{
+            background-color: $color_light_1;
+        }
+
+        .cover-image{
+            opacity: .7;
+        }
+    }
+
+    .detail {
+        color: $color_primary;
+        padding: 27px 15px;
+        border: 1px solid $color_light_3;
+        border-top: 0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        transition: background-color .5s ease-in-out;
+    }
+
+    .title {
+        font-size: 20px;
+        font-weight: 700;
+        height: 90px;
+    }
+    
+    .price {
+        margin-top: 8px;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .cover-image {
+        width: 100%;
+        height: 180px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        opacity: 1;
+        transition: opacity .5s ease-in-out;
+    }
+
+    .cover-image.empty-cover-image{
+        background-color: $color_light_2;
+        border: 1px solid $color_light_3;
+
+        &:after{
+            content: '';
+            background-color: white;
+            background-position: 12px 12px;
+            background-repeat: no-repeat;
+            background-image: url('../../../assets/product_image_placeholder_icon.png');
+            border-radius: 50%;
+            display: block;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 44px;  /*height of icon */
+            width: 44px;  /*width of icon */
+        }
+    }
+}

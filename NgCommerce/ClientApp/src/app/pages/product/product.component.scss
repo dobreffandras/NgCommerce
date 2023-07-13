@@ -1,3 +1,5 @@
+@import '../../../colors.scss';
+
 #product-page {
     margin: 0;
 }
@@ -9,7 +11,7 @@
 
 .product-title {
     margin: 0;
-    color: #003765;
+    color: $color_primary;
     font-size: 64px;
     font-weight: 700;
     line-height: 64px;
@@ -22,7 +24,7 @@
 .product-details {
     margin-left: 64px;
     font-size: 20px;
-    color: #003765;
+    color: $color_primary;
     font-weight: 400;
     line-height: 30px;
 }
@@ -32,20 +34,20 @@
 }
 
 .product-main-side {
-    background-color: #f2f8fb;
-}
+    background-color: $color_light_1;
 
-.product-main-side .product-image{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 300px;
+    .product-image{
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 300px;
+    }
 }
 
 .product-price {
     margin-top: 45px;
     text-align: center;
-    color: #003765;
+    color: $color_primary;
     font-size: 24px;
     font-weight: 700;
 }

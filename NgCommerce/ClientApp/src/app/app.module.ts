@@ -12,7 +12,8 @@ import { ProductCardComponent } from './home/product-card/product-card.component
 import { ProductImageDirective } from './shared/directives/product-image.directive';
 import { registerLocaleData } from '@angular/common';
 import  localeDe from '@angular/common/locales/de';
-import { ProductComponent } from './pages/product/product.component'; 
+import { ProductComponent } from './pages/product/product.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; 
 
 registerLocaleData(localeDe);
 
@@ -35,7 +36,8 @@ registerLocaleData(localeDe);
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'products/:id', component: ProductComponent },
       { path: 'admin/products', component: ProductsComponent },
-    ])
+    ]),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

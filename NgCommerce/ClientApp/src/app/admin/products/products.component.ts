@@ -3,15 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { Product } from '../../core/Product';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'products',
-  templateUrl: './products.component.html'
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
   public products: Product[] = [];
   public newProductFormAvailable: boolean = false;
   public responseErrorMessage = '';
+  public faPencil = faPencil;
+  public faTrash = faTrash;
+
   newProductForm = this.formBuilder.group({
     name: '',
     price: 0,

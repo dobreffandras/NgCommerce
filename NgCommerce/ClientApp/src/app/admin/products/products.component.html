@@ -1,65 +1,71 @@
-<h1 id="tableLabel">Products</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!products?.length"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="products.length">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Image Url</th>
-      <th>Description</th>
-      <th>Category</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of products">
-      <td>{{ p.id }}</td>
-      <td>{{ p.name }}</td>
-      <td>{{ p.price }}</td>
-      <td>{{ p.coverImageUrl }}</td>
-      <td>{{ p.description }}</td>
-      <td>{{ p.category }}</td>
-    </tr>
-  </tbody>
-</table>
-
-
 <div class="container mt-5">
-  <div>
-    <h4>Add new Product</h4>
+  <h1 id="tableLabel">Products</h1>
+
+  <p>This component demonstrates fetching data from the server.</p>
+
+  <p *ngIf="!products?.length"><em>Loading...</em></p>
+
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="products.length">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image Url</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.id }}</td>
+        <td>{{ p.name }}</td>
+        <td>{{ p.price }}</td>
+        <td><img *ngIf="p.coverImageUrl" [src]="p.coverImageUrl" /></td>
+        <td>{{ p.description | slice:0:50 }}</td>
+        <td>{{ p.category }}</td>
+        <td><button><fa-icon [icon]="faPencil"></fa-icon></button></td>
+        <td><button><fa-icon [icon]="faTrash"></fa-icon></button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="container mt-5">
+    <div>
+      <h4>Add new Product</h4>
+    </div>
+    <form (ngSubmit)="OnSubmit()" [formGroup]="newProductForm">
+      <fieldset [disabled]="!newProductFormAvailable">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name: </label>
+          <input type="text" name="name" id="name" formControlName="name" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price: </label>
+          <input type="number" name="price" id="price" formControlName="price" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="coverImageUrl" class="form-label">Cover Image Url: </label>
+          <input type="text" name="coverImageUrl" id="coverImageUrl" formControlName="coverImageUrl" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="descripion" class="form-label">Description: </label>
+          <input type="text" name="description" id="descripion" formControlName="description" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Category: </label>
+          <input type="text" name="category" id="category" formControlName="category" class="form-control" />
+        </div>
+        <div>
+          <input type="Submit" name="name" id="name" class="btn btn-primary mt-3" />
+        </div>
+        <div *ngIf="responseErrorMessage" class="mt-2 alert alert-danger">
+          {{ responseErrorMessage }}
+        </div>
+      </fieldset>
+    </form>
   </div>
-  <form (ngSubmit)="OnSubmit()" [formGroup]="newProductForm">
-    <fieldset [disabled]="!newProductFormAvailable">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name: </label>
-        <input type="text" name="name" id="name" formControlName="name" class="form-control" />
-      </div>
-      <div class="mb-3">
-        <label for="price" class="form-label">Price: </label>
-        <input type="number" name="price" id="price" formControlName="price" class="form-control" />
-      </div>
-      <div class="mb-3">
-        <label for="coverImageUrl" class="form-label">Cover Image Url: </label>
-        <input type="text" name="coverImageUrl" id="coverImageUrl" formControlName="coverImageUrl" class="form-control" />
-      </div>
-      <div class="mb-3">
-        <label for="descripion" class="form-label">Description: </label>
-        <input type="text" name="description" id="descripion" formControlName="description" class="form-control" />
-      </div>
-      <div class="mb-3">
-        <label for="category" class="form-label">Category: </label>
-        <input type="text" name="category" id="category" formControlName="category" class="form-control" />
-      </div>
-      <div>
-        <input type="Submit" name="name" id="name" class="btn btn-primary mt-3" />
-      </div>
-      <div *ngIf="responseErrorMessage" class="mt-2 alert alert-danger">
-        {{ responseErrorMessage }}
-      </div>
-    </fieldset>
-  </form>
 </div>

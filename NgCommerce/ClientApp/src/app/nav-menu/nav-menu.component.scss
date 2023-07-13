@@ -1,7 +1,14 @@
+@import '../../colors.scss';
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  color: $color_primary
+}
+
+nav.navbar {
+  background-color: $color_primary;
 }
 
 html {
@@ -15,4 +22,15 @@ html {
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+ul.navbar-nav li a {
+  color: $color_light_1;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+
+  &:hover {
+    color: $color_accent_2;
+  }
 }

@@ -1,9 +1,12 @@
 <header>
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="../../assets/main_logo.png" />
+    </a>
+  </div>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow"
-  >
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">NgCommerce</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -11,26 +14,21 @@
         data-target=".navbar-collapse"
         aria-label="Toggle navigation"
         [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
+        (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-start"
+        [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/products']"
-              >Products</a
-            >
+            <a class="nav-link" [routerLink]="['/products']">Products</a>
           </li>
         </ul>
       </div>

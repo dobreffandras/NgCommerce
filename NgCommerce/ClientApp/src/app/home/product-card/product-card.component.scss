@@ -2,7 +2,7 @@
 
 .product-card {
     margin: 10px;
-    min-width: 300px;
+    width: 300px;
 
     a {
         text-decoration: none;
@@ -49,6 +49,9 @@
         border-top-right-radius: 8px;
         opacity: 1;
         transition: opacity .5s ease-in-out;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .cover-image.empty-cover-image{

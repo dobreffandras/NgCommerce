@@ -26,8 +26,8 @@
         <td><img *ngIf="p.coverImageUrl" [src]="p.coverImageUrl" /></td>
         <td>{{ p.description | slice:0:50 }}</td>
         <td>{{ p.category }}</td>
-        <td><button><fa-icon [icon]="faPencil" (click)="OnProductEdit(p.id)"></fa-icon></button></td>
-        <td><button><fa-icon [icon]="faTrash"></fa-icon></button></td>
+        <td><button (click)="OnProductEdit(p.id)"><fa-icon [icon]="faPencil"></fa-icon></button></td>
+        <td><button (click)="OnProductDelete(p.id)"><fa-icon [icon]="faTrash"></fa-icon></button></td>
       </tr>
     </tbody>
   </table>

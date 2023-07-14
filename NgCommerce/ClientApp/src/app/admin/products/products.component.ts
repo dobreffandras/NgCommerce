@@ -95,6 +95,22 @@ export class ProductsComponent implements OnInit {
       category: product.category
     });
   }
+  
+  public OnProductDelete(id: number) {
+    let confirmed = confirm("Are you sure you want to delete product?");
+    
+    if(confirmed){
+      this.productsService.deleteProduct(id)
+      .then(() => {
+        let index = this.products.findIndex(p => p.id == id);
+        this.products.splice(index, 1);
+        this.newProductForm.reset();
+      })
+      .catch(e => {
+        this.responseErrorMessage = e?.error ?? "Oops, something happened.";
+      });
+    }
+  }
 
   public OnCancel() {
     this.editedProductId = undefined;

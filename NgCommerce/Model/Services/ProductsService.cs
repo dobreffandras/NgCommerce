@@ -64,4 +64,18 @@ public class ProductsService : IProductsService
 
         return Result.Ok();
     }
+
+    public async Task<Result> DeleteProduct(int id)
+    {
+        var existing = await dataContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+        if (existing is null)
+        {
+            return Result.Error($"No product with Id {id}");
+        }
+
+        dataContext.Products.Remove(existing);
+        await dataContext.SaveChangesAsync();
+        return Result.Ok();
+    }
+
 }

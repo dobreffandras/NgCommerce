@@ -51,9 +51,12 @@ namespace NgCommerce.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            throw new NotImplementedException();
+            var res = await productsService.DeleteProduct(id);
+            return res.Match<ActionResult>(
+                onSuccess: NoContent,
+                onError: BadRequest);
         }
     }
 }

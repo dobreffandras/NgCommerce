@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Product } from '../Product';
 import { NewProduct } from '../NewProduct';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -31,5 +31,12 @@ export class ProductsService {
     return firstValueFrom(this.http.put<Product>(
       this.baseUrl + 'api/products',
       product));
+  }
+  
+  deleteProduct(id: number) : Promise<void> {
+    return firstValueFrom(
+      this.http
+      .delete(this.baseUrl + 'api/products/' + id)
+      .pipe(map(_=> void(0))));
   }
 }

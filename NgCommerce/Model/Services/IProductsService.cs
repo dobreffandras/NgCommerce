@@ -6,4 +6,5 @@ public interface IProductsService
     Task<Result<Product>> GetProduct(int id);
     Task<IEnumerable<Product>> GetProducts();
     Task<Result> UpdateProduct(Product product);
+    Task<Result> DeleteProduct(int id);
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,6 +12,7 @@ export class PageStepperComponent {
   @Input() currentPage: number = 1;
   @Input() totalPages: number = 1;
   @Input() shownPageCount: number = 5;
+  @Output() onPageSelected = new EventEmitter<number>();
 
   get pageNumbers(): number[] {
     let start = this.currentPage - Math.floor(this.shownPageCount / 2);
@@ -30,15 +31,18 @@ export class PageStepperComponent {
   }
 
   OnPageClicked(pageNum: number) {
-    this.currentPage = pageNum;
+    let selectedPage = pageNum;
+    this.onPageSelected.emit(selectedPage);
   }
 
   OnArrowLeftClicked() {
-    this.currentPage = 1 < this.currentPage ? this.currentPage - 1 : 1;
+    let selectedPage = 1 < this.currentPage ? this.currentPage - 1 : 1;
+    this.onPageSelected.emit(selectedPage);
   }
   
   OnArrowRightClicked() {
-    this.currentPage = this.currentPage < this.totalPages ? this.currentPage +1  : this.totalPages;
+    let selectedPage = this.currentPage < this.totalPages ? this.currentPage +1  : this.totalPages;
+    this.onPageSelected.emit(selectedPage);
   }
 
   range(start: number, count: number) {

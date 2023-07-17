@@ -10,14 +10,30 @@ import { ProductsService } from '../core/services/products.service';
 export class HomeComponent implements OnInit {
 
   public products: Product[] = [];
+  public productsCurrentPage = 1;
+  public productsTotalPages = 1;
+  public productsPerPage = 8;
 
   constructor(
     private productsService: ProductsService) {
   }
 
   ngOnInit(): void {
-    this.productsService.getProducts(0, 8)
-    .then(p => { this.products = p.items; })
+    this.productsService.getProducts(0, this.productsPerPage)
+    .then(p => {
+       this.products = p.items;
+       this.productsCurrentPage = p.currentPage + 1;
+       this.productsTotalPages = p.totalPages;
+      })
     .catch(e => console.error(e));
+  }
+
+  onProductsPageSelected(page: number) {
+    this.productsService.getProducts(page - 1, this.productsPerPage)
+    .then(p => {
+       this.products = p.items;
+       this.productsCurrentPage = p.currentPage + 1;
+       this.productsTotalPages = p.totalPages;
+    });
   }
 }

@@ -8,5 +8,10 @@
             *ngFor="let p of products" 
             [product]="p"></product-card>
     </div>
-    <page-stepper class="mt-1 mb-3"></page-stepper>
+    <page-stepper 
+        class="mt-1 mb-3"
+        [currentPage]="productsCurrentPage"
+        [totalPages]="productsTotalPages"
+        [shownPageCount]="5"
+        (onPageSelected)="onProductsPageSelected($event)"></page-stepper>
 </div>

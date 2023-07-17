@@ -1,0 +1,19 @@
+<div class="container">
+    <ul>
+        <li 
+            [ngClass]="{'page-stepper-disabled': currentPage < 2}" 
+            class="stepper-arrow">
+            <a (click)="OnArrowLeftClicked()"><fa-icon [icon]="faArrowLeft"></fa-icon></a>
+        </li>
+        <li 
+            *ngFor="let pageNum of pageNumbers" 
+            [ngClass]="{'page-stepper-disabled': pageNum == currentPage}">
+            <a (click)="pageNum != currentPage && OnPageClicked(pageNum)">{{pageNum}}</a>
+        </li>
+        <li 
+            [ngClass]="{'page-stepper-disabled': totalPages <= currentPage }"
+            class="stepper-arrow">
+            <a (click)="OnArrowRightClicked()"><fa-icon [icon]="faArrowRight"></fa-icon></a>
+        </li>
+    </ul>
+</div>

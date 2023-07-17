@@ -1,25 +1,23 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../core/Product';
+import { ProductsService } from '../core/services/products.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
-  public products : Product[] = [];
+  public products: Product[] = [];
 
   constructor(
-    private http: HttpClient,
-    @Inject('BASE_URL') private baseUrl: string) {
+    private productsService: ProductsService) {
   }
 
   ngOnInit(): void {
-    this.http.get<Product[]>(this.baseUrl + 'api/products')
-      .subscribe({
-        next: p => { this.products = p; },
-        error: e => console.error(e)
-      });
+    this.productsService.getProducts(0, 8)
+    .then(p => { this.products = p.items; })
+    .catch(e => console.error(e));
   }
 }

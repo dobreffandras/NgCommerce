@@ -18,9 +18,11 @@ namespace NgCommerce.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> Get()
+        public async Task<ActionResult<Paged<Product>>> Get(
+            [FromQuery] int page = 0,
+            [FromQuery] int itemsPerPage = 16)
         {
-            return Ok(await productsService.GetProducts()); // TODO Add pagination
+            return Ok(await productsService.GetProducts(page, itemsPerPage));
         }
 
         [HttpGet("{id}")]

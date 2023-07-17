@@ -1,0 +1,43 @@
+@import './../../../../colors.scss';
+
+:host{
+    display: block;
+}
+
+ul {
+    text-align: center;
+    padding: 0;
+    li {
+        display: inline-block;
+        margin: 11px;
+
+        a {
+            display: block;
+            padding: 10px;    
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            transition: background-color .2s ease-in-out;
+            border-radius: 50%;
+
+            &:hover {
+                background-color: $color_light_4;
+            }
+        }
+    }
+
+    li.page-stepper-disabled{
+        a {
+            cursor: default;
+            font-weight: bold;
+
+            &:hover {
+                background-color: inherit;
+            }
+        }
+
+        &.stepper-arrow {
+            color: $color_disabled;
+        }
+    }
+}

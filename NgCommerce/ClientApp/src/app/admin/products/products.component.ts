@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
     this.newProductFormAvailable = false;
     this.productsService.getProducts()
       .then(products => {
-        this.products = products
+        this.products = products.items
       })
       .catch(e => {
         console.error(e)

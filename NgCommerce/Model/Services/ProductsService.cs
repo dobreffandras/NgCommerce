@@ -40,10 +40,19 @@ public class ProductsService : IProductsService
             : Result.Error<Product>("Product not Found");
     }
 
-    public async Task<IEnumerable<Product>> GetProducts()
+    public async Task<Paged<Product>> GetProducts(int page, int itemsPerPage)
     {
-        var entities = await dataContext.Products.ToListAsync();
-        return entities.Select(mapper.Map<Product>);
+        var count = await dataContext.Products.CountAsync();
+        var entities = await dataContext.Products
+            .Skip(page * itemsPerPage)
+            .Take(itemsPerPage)
+            .ToListAsync();
+
+        return new Paged<Product>(
+            items: entities.Select(mapper.Map<Product>),
+            currentPage: page,
+            totalPages: (count / itemsPerPage) + 1,
+            itemsPerPage: itemsPerPage);
     }
 
     public async Task<Result> UpdateProduct(Product product)

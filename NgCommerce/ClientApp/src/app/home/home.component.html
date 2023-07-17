@@ -4,6 +4,9 @@
     <h3>Products</h3>
 
     <div *ngIf="products.length" class="d-flex flex-wrap">  
-        <product-card *ngFor="let p of products" [product]="p"></product-card>
+        <product-card
+            *ngFor="let p of products" 
+            [product]="p"></product-card>
     </div>
+    <page-stepper class="mt-1 mb-3"></page-stepper>
 </div>

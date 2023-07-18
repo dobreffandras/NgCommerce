@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import '../../colors.scss';
 
 a.navbar-brand {
@@ -9,6 +10,30 @@ a.navbar-brand {
 
 nav.navbar {
   background-color: $color_primary;
+
+  .left-icons {
+
+    a {
+      padding: 10px;
+      border: 1px solid $color_light_3;
+      border-radius: 50%;
+
+      svg {
+        position: relative;
+        left: 1px;
+      }
+
+      &:hover {
+        background-color: $color_light_3;
+        cursor: pointer;
+        transition: .3s;
+
+        svg {
+          fill: $color_1;
+        }
+      }
+    }
+  }
 }
 
 html {
@@ -32,5 +57,52 @@ ul.navbar-nav li a {
 
   &:hover {
     color: $color_accent_2;
+  }
+}
+
+#cart-preview:not(opened) {
+  display: none;
+  opacity: 0;
+}
+
+#cart-preview.opened {
+  display: block;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: color.adjust($color_light_3, $alpha: -0.2);
+  overflow: hidden;
+  z-index: 200;
+
+  .cart-preview-container {
+    background-color: $color_light_1;
+    position: absolute;
+    top: 25px;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    padding: 25px;
+    border-radius: 25px;
+
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 30px;
+      width: 45px;
+      height: 45px;
+
+      a {
+        padding: 12px;
+        background-color: $color_light_3;
+        border-radius: 50%;
+
+        &:hover {
+          background-color: color.adjust($color_light_3, $alpha: -0.4);
+          cursor: pointer;
+        }
+      }
+    }
   }
 }

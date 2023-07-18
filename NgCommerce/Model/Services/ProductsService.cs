@@ -44,6 +44,7 @@ public class ProductsService : IProductsService
     {
         var count = await dataContext.Products.CountAsync();
         var entities = await dataContext.Products
+            .OrderBy(x => x.Id)
             .Skip(page * itemsPerPage)
             .Take(itemsPerPage)
             .ToListAsync();

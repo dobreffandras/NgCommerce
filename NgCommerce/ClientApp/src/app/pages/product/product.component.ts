@@ -11,6 +11,7 @@ import { ProductsService } from 'src/app/core/services/products.service';
 })
 export class ProductComponent implements OnInit {
   @Input() public product : Product | undefined;
+  public addToCartAmount : number = 1;
   
   constructor(
     private productsService: ProductsService,
@@ -25,5 +26,15 @@ export class ProductComponent implements OnInit {
     .subscribe(p => {
       this.product = p;
     });
+  }
+
+  onIncrease() {
+    this.addToCartAmount++;
+  }
+
+  onDecrease() {
+    if(1 < this.addToCartAmount) {
+      this.addToCartAmount--;
+    } 
   }
 }

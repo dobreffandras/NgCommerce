@@ -13,6 +13,18 @@
                 <section>
                     <div class="product-image" [productImage]="product.coverImageUrl" ></div>
                     <div class="product-price">{{product.price | currency:'EUR':undefined:undefined:'de-DE'}}</div>
+                    <div class="cart-actions">
+                        <div class="amount-controls d-flex justify-content-center">
+                            <button class="ngCommerce-circle-btn" (click)="onDecrease()">-</button>
+                            <div class="amount">{{this.addToCartAmount}}</div>
+                            <button class="ngCommerce-circle-btn" (click)="onIncrease()">+</button>
+                        </div>
+                        <div class="add-to-cart">
+                            <button class="ngCommerce-btn">
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>

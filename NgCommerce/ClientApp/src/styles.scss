@@ -26,3 +26,55 @@ body {
   font-family: "Open Sans",Arial,Helvetica,sans-serif;
   color: $color_primary;
 }
+
+.ngCommerce-circle-btn {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  border: none;
+  color: $color_light_1;
+  background-color: $color_1;
+  font-weight: bold;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $color_2;
+  }
+
+  &:active {
+    background-color: $color_light_3;
+  }
+
+  &:disabled {
+    background-color: gray;
+    color: lightgray;
+    cursor: default;
+  }
+}
+
+
+.ngCommerce-btn {
+  border-radius: 30px;
+  height: 60px;
+  min-width: 60px;
+  padding: 10px 30px;
+  border: none;
+  color: $color_light_1;
+  background-color: $color_1;
+  font-weight: bold;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $color_2;
+  }
+
+  &:active {
+    background-color: $color_light_3;
+  }
+
+  &:disabled {
+    background-color: gray;
+    color: lightgray;
+    cursor: default;
+  }
+}

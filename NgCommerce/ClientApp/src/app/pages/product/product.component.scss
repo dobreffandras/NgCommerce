@@ -7,6 +7,7 @@
 .product-main {
     max-width: none;
     padding: 0;
+    border-bottom: 2px solid $color_light_1;
 }
 
 .product-title {
@@ -34,6 +35,7 @@
 }
 
 .product-main-side {
+    min-height: 700px;
     background-color: $color_light_1;
 
     .product-image{
@@ -41,6 +43,24 @@
         background-repeat: no-repeat;
         background-position: center;
         height: 300px;
+    }
+
+    .cart-actions {
+        .amount-controls {
+            margin-top: 20px;
+
+            .amount {
+                font-size: 14px;
+                font-weight: 600;
+                margin: 10px;
+                text-align: center;
+            }
+        }
+
+        .add-to-cart {
+            margin: 20px auto;
+            text-align: center;
+        }
     }
 }
 

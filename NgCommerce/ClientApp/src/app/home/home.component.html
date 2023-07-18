@@ -3,12 +3,14 @@
     <p>Welcome to the NgCommerce .NET-Angular eCommerce website.</p>
     <h3>Products</h3>
 
-    <div *ngIf="products.length" class="d-flex flex-wrap">  
+
+    <div *ngIf="products.length && !productListLoading" class="d-flex flex-wrap">  
         <product-card
             *ngFor="let p of products" 
             [product]="p"></product-card>
     </div>
-    <page-stepper 
+    <div *ngIf="productListLoading">Please wait...</div>
+    <page-stepper
         class="mt-1 mb-3"
         [currentPage]="productsCurrentPage"
         [totalPages]="productsTotalPages"

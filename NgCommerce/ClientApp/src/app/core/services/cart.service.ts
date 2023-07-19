@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Cart, ICart, isCart } from "../Cart";
 import { Product } from "../Product";
+import { Observable, Subject, concat, of } from "rxjs";
 
 
 const LOCALSTORAGE_KEY = "ngCommerce-cart";
@@ -9,18 +10,11 @@ const LOCALSTORAGE_KEY = "ngCommerce-cart";
     providedIn: 'root',
 })
 export class CartService {
+    public cart : Observable<ICart>;
+    _cart: Subject<ICart> = new Subject();
 
-    getCart(): ICart {
-        let raw = localStorage.getItem(LOCALSTORAGE_KEY);
-        if (raw) {
-            let cart = JSON.parse(raw);
-
-            if (isCart(cart)) {
-                return cart
-            }
-        }
-
-        return new Cart();
+    constructor() {
+        this.cart = concat(of(this.getCart()), this._cart);
     }
 
     addProductToCart(p: Product, amount: number = 1) {
@@ -40,5 +34,19 @@ export class CartService {
         }
 
         localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(cart));
+        this._cart.next(this.getCart());
+    }
+    
+    private getCart(): ICart {
+        let raw = localStorage.getItem(LOCALSTORAGE_KEY);
+        if (raw) {
+            let cartData = JSON.parse(raw);
+
+            if (isCart(cartData)) {
+                return new Cart(cartData);
+            }
+        }
+
+        return new Cart();
     }
 }

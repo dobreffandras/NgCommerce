@@ -14,7 +14,8 @@ import { registerLocaleData } from '@angular/common';
 import  localeDe from '@angular/common/locales/de';
 import { ProductComponent } from './pages/product/product.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PageStepperComponent } from './shared/components/page-stepper/page-stepper.component'; 
+import { PageStepperComponent } from './shared/components/page-stepper/page-stepper.component';
+import { CartComponent } from './shared/components/cart/cart/cart.component'; 
 
 registerLocaleData(localeDe);
 
@@ -27,7 +28,8 @@ registerLocaleData(localeDe);
     ProductCardComponent,
     ProductImageDirective,
     ProductComponent,
-    PageStepperComponent
+    PageStepperComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,0 +1,24 @@
+<h1 class="">Cart</h1>
+
+<div class="cart-content">
+    <table>
+        <thead>
+            <th></th>
+            <th>Product Name</th>
+            <th>Price per item</th>
+            <th>Amount</th>
+            <th>Sum</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cart.items">
+                <td>IMG</td>
+                <td>{{item.name}}</td>
+                <td>{{item.itemPrice | currency: 'EUR':undefined:undefined:'de-DE'}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.amount * item.itemPrice | currency: 'EUR':undefined:undefined:'de-DE'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    Total: {{cart.sumTotal}}
+</div>

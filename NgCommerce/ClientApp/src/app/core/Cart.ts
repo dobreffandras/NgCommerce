@@ -4,9 +4,18 @@ export interface ICart {
     sumTotal: number;
 }
 
+export interface CartData{
+    items: CartItem[];
+}
+
 export class Cart implements ICart {
-    items: CartItem[] = [];
-    get sumTotal() : number {
+    items: CartItem[];
+
+    constructor(cartData: CartData | null = null) {
+        this.items = cartData?.items || [];
+    }
+
+    get sumTotal(): number {
         return this.items.map(x => x.amount * x.itemPrice).reduce((prev, curr) => prev + curr, 0);
     }
 }
@@ -19,30 +28,30 @@ export type CartItem = {
     amount: number;
 }
 
-export function isCart(o: any) : o is Cart  {
-    if("items" in o) {
-        if(Array.isArray(o.items)) {
+export function isCart(o: any): o is CartData {
+    if ("items" in o) {
+        if (Array.isArray(o.items)) {
             return (<Array<any>>o.items).every(i => isCartItem(i));
-        } 
+        }
     }
 
     return false;
 }
 
-export function isCartItem(o: any) : o is CartItem  {
-    const hasCorrectProperties = 
-    "productId" in o 
-    && "name" in o
-    && "coverImageUrl" in o
-    && "itemPrice" in o
-    && "amount" in o;
+export function isCartItem(o: any): o is CartItem {
+    const hasCorrectProperties =
+        "productId" in o
+        && "name" in o
+        && "coverImageUrl" in o
+        && "itemPrice" in o
+        && "amount" in o;
 
-    if(hasCorrectProperties) {
-        return typeof(o.productId) === "number"
-        && typeof(o.name) === "string"
-        && (!o.coverImageUrl || typeof(o.coverImageUrl) === "string")
-        && typeof(o.itemPrice) === "number"
-        && typeof(o.amount) == "number";
+    if (hasCorrectProperties) {
+        return typeof (o.productId) === "number"
+            && typeof (o.name) === "string"
+            && (!o.coverImageUrl || typeof (o.coverImageUrl) === "string")
+            && typeof (o.itemPrice) === "number"
+            && typeof (o.amount) == "number";
     }
 
     return false;

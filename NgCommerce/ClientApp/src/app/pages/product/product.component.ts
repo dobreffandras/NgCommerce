@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchAll } from 'rxjs';
 import { Product } from 'src/app/core/Product';
+import { CartService } from 'src/app/core/services/cart.service';
 import { ProductsService } from 'src/app/core/services/products.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class ProductComponent implements OnInit {
   
   constructor(
     private productsService: ProductsService,
-    private activatedRoute: ActivatedRoute){}
+    private activatedRoute: ActivatedRoute,
+    private cartService : CartService){}
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -36,5 +38,9 @@ export class ProductComponent implements OnInit {
     if(1 < this.addToCartAmount) {
       this.addToCartAmount--;
     } 
+  }
+
+  onAddToCart() {
+    this.cartService.addProductToCart(this.product!, this.addToCartAmount);
   }
 }
